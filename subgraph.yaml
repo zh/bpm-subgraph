@@ -1,0 +1,26 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: SmartLock
+    network: fuji
+    source:
+      address: "0x787250e9C9440DC4056124a2E5A354C02eF3045E"
+      abi: SmartLock
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - OwnershipTransferred
+        - State
+      abis:
+        - name: SmartLock
+          file: ./abis/SmartLock.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: State(address,string)
+          handler: handleState
+      file: ./src/mapping.ts
