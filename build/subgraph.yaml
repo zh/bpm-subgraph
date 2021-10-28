@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: SmartLock
@@ -17,10 +17,10 @@ dataSources:
         - State
       abis:
         - name: SmartLock
-          file: ./abis/SmartLock.json
+          file: SmartLock/abis/SmartLock.json
       eventHandlers:
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
         - event: State(address,string)
           handler: handleState
-      file: ./src/mapping.ts
+      file: SmartLock/SmartLock.wasm
